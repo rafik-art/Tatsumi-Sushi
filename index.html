@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sushi Tatsumi | Menu</title>
+  <title>Sushi Tatsumi | QR Menu</title>
   <!-- Google Fonts for Elegant Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   
   <style>
+    /* 1. DEFINE COLORS & VARIABLES (DARK THEME) */
     :root {
       --bg-color: #121212;
       --card-bg: #1e1e1e;
@@ -31,15 +32,27 @@
       color: var(--text-main);
       font-family: 'Inter', sans-serif;
       line-height: 1.5;
-      padding-bottom: 80px;
+      padding-bottom: 80px; /* Space for the fixed bottom nav on mobile */
     }
 
-    /* Header Section */
+    /* 2. HEADER & LOGO SECTION */
     header {
       text-align: center;
       padding: 40px 20px 20px;
       border-bottom: 1px solid var(--border-color);
       background: linear-gradient(180deg, #1a1a1a 0%, var(--bg-color) 100%);
+    }
+
+    /* THE LOGO STYLE YOU REQUESTED */
+    .brand-logo {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      border-radius: 50%; /* Rounded crop */
+      margin-bottom: 12px;
+      border: 2px solid var(--accent-gold);
+      padding: 4px;
+      background-color: var(--card-bg);
     }
 
     header h1 {
@@ -57,7 +70,7 @@
       letter-spacing: 1px;
     }
 
-    /* Category Navigation */
+    /* 3. CATEGORY NAVIGATION (MOBILE-SCROLLING) */
     .nav-tabs {
       display: flex;
       overflow-x: auto;
@@ -70,10 +83,10 @@
       backdrop-filter: blur(8px);
       z-index: 100;
       border-bottom: 1px solid var(--border-color);
-      scrollbar-width: none;
+      scrollbar-width: none; /* Hide scrollbar Firefox */
     }
     .nav-tabs::-webkit-scrollbar {
-      display: none;
+      display: none; /* Hide scrollbar Chrome/Safari */
     }
 
     .tab-btn {
@@ -95,7 +108,7 @@
       border-color: var(--accent-gold);
     }
 
-    /* Container & Menu Sections */
+    /* 4. CONTAINER & MENU ITEMS */
     .container {
       max-width: 600px;
       margin: 0 auto;
@@ -114,7 +127,6 @@
       justify-content: space-between;
     }
 
-    /* Menu Items Card */
     .menu-item {
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -162,7 +174,7 @@
       white-space: nowrap;
     }
 
-    /* Footer & Actions */
+    /* 5. FOOTER & INSTAGRAM LINK */
     footer {
       text-align: center;
       padding: 30px 20px;
@@ -194,13 +206,15 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- 1. Header with Logo, Name, and Slogan -->
   <header>
+    <!-- ENSURE YOU UPLOAD A FILE NAMED 'logo.png' TO YOUR GITHUB FOLDER -->
+    <img src="logo.png" alt="Sushi Tatsumi Logo" class="brand-logo" />
     <h1>Sushi Tatsumi</h1>
     <p>Authentic Japanese Cuisine & Fine Sushi</p>
   </header>
 
-  <!-- Navigation Bar -->
+  <!-- 2. Scrolling Navigation -->
   <nav class="nav-tabs">
     <a href="#starters" class="tab-btn">Starters</a>
     <a href="#nigiri-sashimi" class="tab-btn">Nigiri & Sashimi</a>
@@ -208,7 +222,7 @@
     <a href="#drinks" class="tab-btn">Drinks</a>
   </nav>
 
-  <!-- Menu Content Container -->
+  <!-- 3. Menu Content -->
   <div class="container">
 
     <!-- Section 1: Starters -->
@@ -281,8 +295,9 @@
 
   </div>
 
-  <!-- Footer -->
+  <!-- 4. Footer & Follow Button -->
   <footer>
+    <!-- LINK UPDATED TO YOUR INSTAGRAM -->
     <a href="https://www.instagram.com/sushi_tatsumi_?stkn=MWNldndlaHVnY3NrbQ==" target="_blank" class="social-btn">
       <span>Follow us on Instagram @sushi_tatsumi_</span>
     </a>
