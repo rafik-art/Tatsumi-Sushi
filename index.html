@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sushi Tatsumi | QR Menu</title>
-  <!-- Google Fonts for Elegant Typography -->
+  <meta name="theme-color" content="#121212" />
+
+  <title>Sushi Tatsumi | Menu</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* 1. DEFINE COLORS & VARIABLES (DARK THEME) */
+
     :root {
-      --bg-color: #121212;
-      --card-bg: #1e1e1e;
-      --accent-gold: #d4af37;
-      --accent-red: #c0392b;
-      --text-main: #f5f5f5;
-      --text-muted: #a0a0a0;
-      --border-color: #2c2c2c;
+      --bg: #101010;
+      --card: #1b1b1b;
+      --gold: #d4af37;
+      --gold-light: #ead58a;
+      --red: #c0392b;
+      --white: #f5f5f5;
+      --muted: #a7a7a7;
+      --border: #303030;
     }
 
     * {
@@ -27,283 +30,2248 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
+      background: var(--bg);
+      color: var(--white);
       font-family: 'Inter', sans-serif;
       line-height: 1.5;
-      padding-bottom: 80px; /* Space for the fixed bottom nav on mobile */
+      padding-bottom: 30px;
     }
 
-    /* 2. HEADER & LOGO SECTION */
+    /* HEADER */
+
     header {
       text-align: center;
-      padding: 40px 20px 20px;
-      border-bottom: 1px solid var(--border-color);
-      background: linear-gradient(180deg, #1a1a1a 0%, var(--bg-color) 100%);
+      padding: 38px 20px 24px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(
+        180deg,
+        #1b1b1b 0%,
+        var(--bg) 100%
+      );
     }
 
-    /* THE LOGO STYLE YOU REQUESTED */
     .brand-logo {
-      width: 90px;
-      height: 90px;
+      width: 92px;
+      height: 92px;
       object-fit: contain;
-      border-radius: 50%; /* Rounded crop */
+      border-radius: 50%;
       margin-bottom: 12px;
-      border: 2px solid var(--accent-gold);
+      border: 2px solid var(--gold);
       padding: 4px;
-      background-color: var(--card-bg);
+      background: var(--card);
     }
 
     header h1 {
       font-family: 'Cinzel', serif;
-      font-size: 2.2rem;
+      font-size: clamp(1.8rem, 7vw, 2.35rem);
       letter-spacing: 2px;
-      color: var(--accent-gold);
-      margin-bottom: 5px;
+      color: var(--gold);
       text-transform: uppercase;
+      margin-bottom: 4px;
     }
 
     header p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
+      color: var(--muted);
+      font-size: .82rem;
       letter-spacing: 1px;
     }
 
-    /* 3. CATEGORY NAVIGATION (MOBILE-SCROLLING) */
+    /* CATEGORY NAVIGATION */
+
     .nav-tabs {
-      display: flex;
-      overflow-x: auto;
-      white-space: nowrap;
-      padding: 15px 20px;
-      gap: 10px;
       position: sticky;
       top: 0;
-      background-color: rgba(18, 18, 18, 0.95);
-      backdrop-filter: blur(8px);
       z-index: 100;
-      border-bottom: 1px solid var(--border-color);
-      scrollbar-width: none; /* Hide scrollbar Firefox */
+
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      white-space: nowrap;
+
+      padding: 12px 15px;
+
+      background: rgba(16,16,16,.96);
+      backdrop-filter: blur(10px);
+
+      border-bottom: 1px solid var(--border);
+
+      scrollbar-width: none;
     }
+
     .nav-tabs::-webkit-scrollbar {
-      display: none; /* Hide scrollbar Chrome/Safari */
+      display: none;
     }
 
     .tab-btn {
-      background: var(--card-bg);
-      color: var(--text-muted);
-      border: 1px solid var(--border-color);
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-size: 0.85rem;
+      flex: 0 0 auto;
+
+      color: var(--muted);
+      background: var(--card);
+
+      border: 1px solid var(--border);
+      border-radius: 22px;
+
+      padding: 8px 14px;
+
+      font-size: .78rem;
       font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
+
       text-decoration: none;
+
+      transition: .2s;
     }
 
-    .tab-btn.active, .tab-btn:hover {
-      background: var(--accent-gold);
+    .tab-btn:hover,
+    .tab-btn:focus {
       color: #000;
-      border-color: var(--accent-gold);
+      background: var(--gold);
+      border-color: var(--gold);
     }
 
-    /* 4. CONTAINER & MENU ITEMS */
+    /* MAIN CONTAINER */
+
     .container {
-      max-width: 600px;
+      width: min(680px, 100%);
       margin: 0 auto;
-      padding: 20px;
+      padding: 0 16px 30px;
     }
+
+    /* SECTION TITLES */
 
     .section-title {
+      scroll-margin-top: 70px;
+
       font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
-      color: var(--accent-gold);
-      margin: 35px 0 15px;
+      font-size: 1.45rem;
+
+      color: var(--gold);
+
+      margin: 34px 0 15px;
       padding-bottom: 8px;
-      border-bottom: 1px dashed var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+
+      border-bottom: 1px dashed var(--border);
     }
 
+    .section-note {
+      color: var(--muted);
+      font-size: .76rem;
+
+      margin: -7px 0 14px;
+
+      font-style: italic;
+    }
+
+    /* MENU ITEMS */
+
     .menu-item {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 15px;
       display: flex;
+      align-items: flex-start;
       justify-content: space-between;
-      gap: 15px;
+
+      gap: 14px;
+
+      background: var(--card);
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      padding: 14px;
+      margin-bottom: 10px;
     }
 
     .item-info {
+      min-width: 0;
       flex: 1;
     }
 
     .item-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 4px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 8px;
+
+      gap: 7px;
+
+      color: #fff;
+
+      font-size: .98rem;
+      font-weight: 600;
+
+      margin-bottom: 3px;
     }
 
+    .item-desc {
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.45;
+    }
+
+    /* BADGES */
+
     .badge {
-      font-size: 0.65rem;
-      background-color: var(--accent-red);
+      display: inline-block;
+
+      font-size: .58rem;
+      line-height: 1;
+
+      background: var(--red);
       color: #fff;
-      padding: 2px 6px;
+
+      padding: 4px 6px;
       border-radius: 4px;
+
       text-transform: uppercase;
       font-weight: 700;
     }
 
-    .item-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
+    /* PRICES */
 
     .item-price {
-      font-size: 1.1rem;
+      flex: 0 0 auto;
+
+      color: var(--gold);
+
+      font-size: .94rem;
       font-weight: 700;
-      color: var(--accent-gold);
+
+      text-align: right;
+
       white-space: nowrap;
+
+      padding-top: 1px;
     }
 
-    /* 5. FOOTER & INSTAGRAM LINK */
+    .two-prices {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .two-prices span:first-child {
+      font-size: .88rem;
+    }
+
+    .two-prices span:last-child {
+      color: var(--gold-light);
+      font-size: .76rem;
+      margin-top: 2px;
+    }
+
+    /* MIX BOXES */
+
+    .box-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 10px;
+    }
+
+    .box-card {
+      background: var(--card);
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      padding: 13px;
+    }
+
+    .box-card h3 {
+      color: #fff;
+      font-size: .98rem;
+
+      margin-bottom: 4px;
+    }
+
+    .box-card .contents {
+      color: var(--muted);
+
+      font-size: .7rem;
+      line-height: 1.4;
+
+      min-height: 40px;
+    }
+
+    .box-card .box-price {
+      color: var(--gold);
+
+      font-weight: 700;
+      font-size: .92rem;
+
+      margin-top: 8px;
+    }
+
+    /* NOTES */
+
+    .note-box {
+      background: var(--card);
+
+      border: 1px solid var(--border);
+      border-radius: 12px;
+
+      padding: 17px;
+
+      color: var(--muted);
+
+      font-size: .76rem;
+    }
+
+    .note-box p {
+      margin-bottom: 11px;
+    }
+
+    .note-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .note-box strong {
+      color: var(--white);
+    }
+
+    /* FOOTER */
+
     footer {
       text-align: center;
-      padding: 30px 20px;
-      border-top: 1px solid var(--border-color);
-      margin-top: 40px;
+
+      padding: 30px 18px 10px;
+
+      border-top: 1px solid var(--border);
+
+      margin-top: 20px;
     }
 
     .social-btn {
       display: inline-flex;
+
       align-items: center;
-      gap: 8px;
-      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          45deg,
+          #f09433,
+          #e6683c,
+          #dc2743,
+          #cc2366,
+          #bc1888
+        );
+
       color: #fff;
+
       text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 25px;
+
+      padding: 11px 20px;
+
+      border-radius: 24px;
+
       font-weight: 600;
-      font-size: 0.9rem;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      font-size: .82rem;
+
+      box-shadow:
+        0 4px 12px rgba(0,0,0,.3);
+
+      margin-bottom: 13px;
     }
 
     .info-text {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+      color: var(--muted);
+      font-size: .72rem;
       margin-top: 5px;
     }
+
+    /* SMALL PHONES */
+
+    @media (max-width: 430px) {
+
+      .menu-item {
+        padding: 12px;
+        gap: 8px;
+      }
+
+      .item-title {
+        font-size: .92rem;
+      }
+
+      .item-desc {
+        font-size: .73rem;
+      }
+
+      .item-price {
+        font-size: .82rem;
+      }
+
+      .box-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
   </style>
 </head>
+
+
 <body>
 
-  <!-- 1. Header with Logo, Name, and Slogan -->
+  <!-- =========================
+       HEADER
+  ========================== -->
+
   <header>
-    <!-- ENSURE YOU UPLOAD A FILE NAMED 'logo.png' TO YOUR GITHUB FOLDER -->
-    <img src="logo.png" alt="Sushi Tatsumi Logo" class="brand-logo" />
+
+    <img
+      src="logo.png"
+      alt="Sushi Tatsumi Logo"
+      class="brand-logo"
+    >
+
     <h1>Sushi Tatsumi</h1>
-    <p>Authentic Japanese Cuisine & Fine Sushi</p>
+
+    <p>
+      Authentic Japanese Cuisine & Fine Sushi
+    </p>
+
   </header>
 
-  <!-- 2. Scrolling Navigation -->
-  <nav class="nav-tabs">
-    <a href="#starters" class="tab-btn">Starters</a>
-    <a href="#nigiri-sashimi" class="tab-btn">Nigiri & Sashimi</a>
-    <a href="#special-rolls" class="tab-btn">Special Rolls</a>
-    <a href="#drinks" class="tab-btn">Drinks</a>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <nav
+    class="nav-tabs"
+    aria-label="Catégories du menu"
+  >
+
+    <a class="tab-btn" href="#soupes">
+      Soupes
+    </a>
+
+    <a class="tab-btn" href="#entrees">
+      Entrées
+    </a>
+
+    <a class="tab-btn" href="#poke">
+      Poke
+    </a>
+
+    <a class="tab-btn" href="#sushi">
+      Sushi
+    </a>
+
+    <a class="tab-btn" href="#rolls">
+      Rolls
+    </a>
+
+    <a class="tab-btn" href="#maki">
+      Maki
+    </a>
+
+    <a class="tab-btn" href="#plats">
+      Plats
+    </a>
+
+    <a class="tab-btn" href="#wok">
+      Wok
+    </a>
+
+    <a class="tab-btn" href="#boxes">
+      Mix Box
+    </a>
+
+    <a class="tab-btn" href="#notes">
+      Notes
+    </a>
+
   </nav>
 
-  <!-- 3. Menu Content -->
-  <div class="container">
 
-    <!-- Section 1: Starters -->
-    <h2 id="starters" class="section-title">Starters</h2>
-    
-    <div class="menu-item">
-      <div class="item-info">
-        <div class="item-title">Miso Soup</div>
-        <div class="item-desc">Traditional soybean paste broth with tofu, seaweed, and scallions.</div>
-      </div>
-      <div class="item-price">$4.50</div>
-    </div>
+  <main class="container">
 
-    <div class="menu-item">
-      <div class="item-info">
-        <div class="item-title">Edamame <span class="badge">Popular</span></div>
-        <div class="item-desc">Steamed Japanese soybean pods sprinkled with sea salt or spicy chili flakes.</div>
-      </div>
-      <div class="item-price">$6.00</div>
-    </div>
 
-    <!-- Section 2: Nigiri & Sashimi -->
-    <h2 id="nigiri-sashimi" class="section-title">Nigiri & Sashimi</h2>
+    <!-- =========================
+         SOUPES
+    ========================== -->
+
+    <h2
+      id="soupes"
+      class="section-title"
+    >
+      Soupes TOM-YUM
+    </h2>
+
 
     <div class="menu-item">
+
       <div class="item-info">
-        <div class="item-title">Salmon Nigiri (2pcs)</div>
-        <div class="item-desc">Fresh slice of fresh Atlantic salmon served over seasoned sushi rice.</div>
+
+        <div class="item-title">
+          Tom-Yum végétarien
+        </div>
+
       </div>
-      <div class="item-price">$7.00</div>
+
+      <div class="item-price">
+        600 DA
+      </div>
+
     </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Tom-Yum poulet
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        800 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Tom-Yum crevette
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        1 200 DA
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         NEMS & GYOZAS
+    ========================== -->
+
+    <h2
+      id="entrees"
+      class="section-title"
+    >
+      Les Nems & Gyozas
+    </h2>
+
+    <p class="section-note">
+      Nems (03 pcs) · Gyozas (06 pcs)
+    </p>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+        <div class="item-title">
+          Nems Poulet
+        </div>
+      </div>
+
+      <div class="item-price">
+        600 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+        <div class="item-title">
+          Nems Crevette
+        </div>
+      </div>
+
+      <div class="item-price">
+        700 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+        <div class="item-title">
+          Gyoza Poulet
+        </div>
+      </div>
+
+      <div class="item-price">
+        900 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+
+          Gyoza Crevette
+
+          <span class="badge">
+            Populaire
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        1 200 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+        <div class="item-title">
+          Gyoza Viande
+        </div>
+      </div>
+
+      <div class="item-price">
+        1 000 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+
+          Gyoza Mix
+
+          <span class="badge">
+            Populaire
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        1 500 DA
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         POKE BOWL
+    ========================== -->
+
+    <h2
+      id="poke"
+      class="section-title"
+    >
+      Poke Bowl
+    </h2>
+
 
     <div class="menu-item">
       <div class="item-info">
-        <div class="item-title">Tuna Sashimi (4pcs)</div>
-        <div class="item-desc">Premium grade raw bluefin tuna slices, served with fresh wasabi.</div>
+        <div class="item-title">
+          Poke végé
+        </div>
       </div>
-      <div class="item-price">$12.00</div>
+
+      <div class="item-price">
+        900 DA
+      </div>
     </div>
 
-    <!-- Section 3: Special Rolls -->
-    <h2 id="special-rolls" class="section-title">Special Rolls</h2>
 
     <div class="menu-item">
       <div class="item-info">
-        <div class="item-title">Tatsumi Signature Roll <span class="badge">Chef Choice</span></div>
-        <div class="item-desc">Tempura shrimp, spicy tuna, avocado inside, topped with seared salmon and unagi sauce.</div>
+        <div class="item-title">
+          Poke chicken
+        </div>
       </div>
-      <div class="item-price">$16.50</div>
+
+      <div class="item-price">
+        1 500 DA
+      </div>
     </div>
+
 
     <div class="menu-item">
       <div class="item-info">
-        <div class="item-title">Dragon Roll</div>
-        <div class="item-desc">Eel and cucumber topped with avocado slices, eel sauce, and toasted sesame seeds.</div>
+        <div class="item-title">
+          Poke crevettes
+        </div>
       </div>
-      <div class="item-price">$15.00</div>
+
+      <div class="item-price">
+        1 400 DA
+      </div>
     </div>
 
-    <!-- Section 4: Drinks -->
-    <h2 id="drinks" class="section-title">Beverages</h2>
 
     <div class="menu-item">
       <div class="item-info">
-        <div class="item-title">Green Tea (Hot/Iced)</div>
-        <div class="item-desc">Authentic Japanese Sencha green tea.</div>
+        <div class="item-title">
+          Poke poisson
+        </div>
       </div>
-      <div class="item-price">$3.50</div>
+
+      <div class="item-price">
+        1 500 DA
+      </div>
     </div>
 
-  </div>
 
-  <!-- 4. Footer & Follow Button -->
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Poke saumon
+        </div>
+      </div>
+
+      <div class="item-price">
+        1 900 DA
+      </div>
+    </div>
+
+
+
+    <!-- =========================
+         NIGIRI
+    ========================== -->
+
+    <h2
+      id="sushi"
+      class="section-title"
+    >
+      Nigiri
+    </h2>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Saumon
+        </div>
+      </div>
+
+      <div class="item-price">
+        500 DA
+      </div>
+    </div>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Dorade
+        </div>
+      </div>
+
+      <div class="item-price">
+        500 DA
+      </div>
+    </div>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Thon
+        </div>
+      </div>
+
+      <div class="item-price">
+        500 DA
+      </div>
+    </div>
+
+
+
+    <!-- =========================
+         SASHIMI
+    ========================== -->
+
+    <h2 class="section-title">
+      Sashimi Mix
+    </h2>
+
+    <p class="section-note">
+      Sashimi (04 / 08 pcs)
+    </p>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+        <div class="item-title">
+          Thon
+        </div>
+      </div>
+
+      <div class="item-price two-prices">
+
+        <span>
+          04 pcs · 800 DA
+        </span>
+
+        <span>
+          08 pcs · 1 600 DA
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+        <div class="item-title">
+          Dorade
+        </div>
+      </div>
+
+      <div class="item-price two-prices">
+
+        <span>
+          04 pcs · 800 DA
+        </span>
+
+        <span>
+          08 pcs · 1 600 DA
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+        <div class="item-title">
+          Mix
+        </div>
+      </div>
+
+      <div class="item-price two-prices">
+
+        <span>
+          04 pcs · 1 000 DA
+        </span>
+
+        <span>
+          08 pcs · 2 000 DA
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+        <div class="item-title">
+          Saumon
+        </div>
+      </div>
+
+      <div class="item-price two-prices">
+
+        <span>
+          04 pcs · 1 000 DA
+        </span>
+
+        <span>
+          08 pcs · 2 000 DA
+        </span>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         CALIFORNIA
+    ========================== -->
+
+    <h2
+      id="rolls"
+      class="section-title"
+    >
+      California
+    </h2>
+
+    <p class="section-note">
+      California (04 / 08 pcs)
+    </p>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          California poulet
+        </div>
+
+        <div class="item-desc">
+          Poulet · fromage · concombre
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+
+        <span>
+          04 · 700 DA
+        </span>
+
+        <span>
+          08 · 1 400 DA
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          California poulet avocat
+        </div>
+
+        <div class="item-desc">
+          Poulet · fromage · concombre · avocat
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+
+        <span>
+          04 · 750 DA
+        </span>
+
+        <span>
+          08 · 1 400 DA
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          California thon
+        </div>
+
+        <div class="item-desc">
+          Thon · fromage · concombre
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+
+        <span>
+          04 · 850 DA
+        </span>
+
+        <span>
+          08 · 1 600 DA
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+
+          Tiger Roll
+
+          <span class="badge">
+            Populaire
+          </span>
+
+        </div>
+
+        <div class="item-desc">
+          Crevette · fromage · concombre
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+
+        <span>
+          04 · 850 DA
+        </span>
+
+        <span>
+          08 · 1 700 DA
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Salmon Cheese
+        </div>
+
+        <div class="item-desc">
+          Saumon · fromage
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+
+        <span>
+          04 · 850 DA
+        </span>
+
+        <span>
+          08 · 1 700 DA
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Fresh Salmon
+        </div>
+
+        <div class="item-desc">
+          Saumon · avocat · fromage · topping menthe ou sésames
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+
+        <span>
+          04 · 950 DA
+        </span>
+
+        <span>
+          08 · 1 900 DA
+        </span>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         CRUNCHY
+    ========================== -->
+
+    <h2 class="section-title">
+      Crunchy Roll
+    </h2>
+
+    <p class="section-note">
+      Crunchy Roll (04 / 08 pcs)
+    </p>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Suri Criss
+        </div>
+
+        <div class="item-desc">
+          Surimi · avocat · mayo épicée
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>04 · 600 DA</span>
+        <span>08 · 1 200 DA</span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Tuna Criss
+        </div>
+
+        <div class="item-desc">
+          Thon · avocat · mayo épicée
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>04 · 850 DA</span>
+        <span>08 · 1 700 DA</span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Tiger Criss
+        </div>
+
+        <div class="item-desc">
+          Crevette · avocat · mayo épicée
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>04 · 850 DA</span>
+        <span>08 · 1 700 DA</span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Octopus Criss
+        </div>
+
+        <div class="item-desc">
+          Poulpe · avocat · mayo épicée
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>04 · 750 DA</span>
+        <span>08 · 1 400 DA</span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Chicken Criss
+        </div>
+
+        <div class="item-desc">
+          Poulet · avocat · mayo épicée
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>04 · 750 DA</span>
+        <span>08 · 1 400 DA</span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Crunchy Dorade
+        </div>
+
+        <div class="item-desc">
+          Dorade · avocat
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>04 · 900 DA</span>
+        <span>08 · 1 700 DA</span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Saumon Criss
+        </div>
+
+        <div class="item-desc">
+          Saumon · avocat · mayo épicée
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>04 · 950 DA</span>
+        <span>08 · 1 900 DA</span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Crunchy Futomaki
+        </div>
+
+        <div class="item-desc">
+          Saumon · avocat · surimi
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>04 · 1 000 DA</span>
+        <span>08 · 2 000 DA</span>
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         ONIGIRI
+    ========================== -->
+
+    <h2
+      id="maki"
+      class="section-title"
+    >
+      Onigiri
+    </h2>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Onigiri Poulet
+        </div>
+      </div>
+
+      <div class="item-price">
+        650 DA
+      </div>
+    </div>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Onigiri Thon
+        </div>
+      </div>
+
+      <div class="item-price">
+        750 DA
+      </div>
+    </div>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Onigiri Crevette
+        </div>
+      </div>
+
+      <div class="item-price">
+        850 DA
+      </div>
+    </div>
+
+
+
+    <!-- =========================
+         HOSOMAKI
+    ========================== -->
+
+    <h2 class="section-title">
+      Hosomaki
+    </h2>
+
+    <p class="section-note">
+      Hosomaki (06 pcs) · Option crispy +200 DA
+    </p>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Hosomaki Végétarien
+        </div>
+      </div>
+
+      <div class="item-price">
+        500 DA
+      </div>
+    </div>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Hosomaki Surimi
+        </div>
+      </div>
+
+      <div class="item-price">
+        500 DA
+      </div>
+    </div>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Hosomaki Avocat
+        </div>
+      </div>
+
+      <div class="item-price">
+        650 DA
+      </div>
+    </div>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Hosomaki Thon
+        </div>
+      </div>
+
+      <div class="item-price">
+        800 DA
+      </div>
+    </div>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Hosomaki Dorade
+        </div>
+      </div>
+
+      <div class="item-price">
+        800 DA
+      </div>
+    </div>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Hosomaki Saumon
+        </div>
+      </div>
+
+      <div class="item-price">
+        950 DA
+      </div>
+    </div>
+
+
+
+    <!-- =========================
+         FUTOMAKI
+    ========================== -->
+
+    <h2 class="section-title">
+      Futomaki
+    </h2>
+
+    <p class="section-note">
+      Futomaki (05 / 10 pcs)
+    </p>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Végé Maki
+        </div>
+
+        <div class="item-desc">
+          Fromage · concombre · avocat · carotte
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>05 · 550 DA</span>
+        <span>10 · 1 100 DA</span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Suri Maki
+        </div>
+
+        <div class="item-desc">
+          Surimi · tomate · avocat · concombre · carotte
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>05 · 600 DA</span>
+        <span>10 · 1 200 DA</span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Chicken Maki
+        </div>
+
+        <div class="item-desc">
+          Poulet · fromage · avocat · carotte
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>05 · 750 DA</span>
+        <span>10 · 1 400 DA</span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Tuna Maki
+        </div>
+
+        <div class="item-desc">
+          Thon · concombre · fromage · avocat · carotte
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>05 · 800 DA</span>
+        <span>10 · 1 600 DA</span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Tiger Maki
+        </div>
+
+        <div class="item-desc">
+          Crevette tempura · concombre · fromage · avocat · carotte
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>05 · 850 DA</span>
+        <span>10 · 1 700 DA</span>
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Geisha
+        </div>
+
+        <div class="item-desc">
+          Saumon · concombre · fromage · avocat · carotte
+        </div>
+
+      </div>
+
+      <div class="item-price two-prices">
+        <span>05 · 1 000 DA</span>
+        <span>10 · 1 950 DA</span>
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         TEMAKI
+    ========================== -->
+
+    <h2 class="section-title">
+      Temaki
+    </h2>
+
+    <p class="section-note">
+      Temaki (01 pc)
+    </p>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Temaki Surimi
+        </div>
+      </div>
+
+      <div class="item-price">
+        600 DA
+      </div>
+    </div>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Temaki Poulet
+        </div>
+      </div>
+
+      <div class="item-price">
+        700 DA
+      </div>
+    </div>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Temaki Thon
+        </div>
+      </div>
+
+      <div class="item-price">
+        800 DA
+      </div>
+    </div>
+
+
+    <div class="menu-item">
+      <div class="item-info">
+        <div class="item-title">
+          Temaki Saumon
+        </div>
+      </div>
+
+      <div class="item-price">
+        1 000 DA
+      </div>
+    </div>
+
+
+
+    <!-- =========================
+         PLATS & GRILLADES
+    ========================== -->
+
+    <h2
+      id="plats"
+      class="section-title"
+    >
+      Plats & Grillades
+    </h2>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Menu Enfant
+        </div>
+
+        <div class="item-desc">
+          Onigiri · 4 pcs crispy · petite boisson
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        1 200 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Yakitori Poulet
+        </div>
+
+        <div class="item-desc">
+          Accompagné de riz
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        1 000 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Yakitori Bœuf Fromage
+        </div>
+
+        <div class="item-desc">
+          Accompagné de riz
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        1 500 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Poulet Tempura
+        </div>
+
+        <div class="item-desc">
+          Poulet pané · riz
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        1 500 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Crevette Tempura
+        </div>
+
+        <div class="item-desc">
+          Crevette panée à la chapelure japonaise · riz
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        1 600 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+
+          Karrage
+
+          <span class="badge">
+            Populaire
+          </span>
+
+        </div>
+
+        <div class="item-desc">
+          Morceaux de cuisses de poulet marinées · accompagnés de riz
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        1 200 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+
+          Benio
+
+          <span class="badge">
+            Populaire
+          </span>
+
+        </div>
+
+        <div class="item-desc">
+          2 plats au choix + 4 sushis + salade et riz
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        2 500 DA
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         RAMEN
+    ========================== -->
+
+    <h2 class="section-title">
+      Ramens
+    </h2>
+
+    <p class="section-note">
+      Nouilles · légumes · champignons noirs · algues et ajitama (œuf mariné)
+    </p>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Ramen Poulet
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        1 200 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+
+        <div class="item-title">
+          Ramen Bœuf
+        </div>
+
+      </div>
+
+      <div class="item-price">
+        1 500 DA
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         WOK
+    ========================== -->
+
+    <h2
+      id="wok"
+      class="section-title"
+    >
+      Wok
+    </h2>
+
+    <p class="section-note">
+      Base de nouilles de blé et légumes · ou base de riz thaï et légumes
+    </p>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+        <div class="item-title">
+          Wok Végétarien
+        </div>
+      </div>
+
+      <div class="item-price">
+        1 000 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+        <div class="item-title">
+          Wok Poulet
+        </div>
+      </div>
+
+      <div class="item-price">
+        1 200 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+        <div class="item-title">
+          Wok Bœuf
+        </div>
+      </div>
+
+      <div class="item-price">
+        1 400 DA
+      </div>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <div class="item-info">
+        <div class="item-title">
+          Wok Crevette
+        </div>
+      </div>
+
+      <div class="item-price">
+        1 600 DA
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         MIX BOX
+    ========================== -->
+
+    <h2
+      id="boxes"
+      class="section-title"
+    >
+      Mix Box
+    </h2>
+
+
+    <div class="box-grid">
+
+
+      <div class="box-card">
+
+        <h3>
+          Mix 8
+        </h3>
+
+        <div class="contents">
+          04 Nigiri · 04 California
+        </div>
+
+        <div class="box-price">
+          1 600 DA
+        </div>
+
+      </div>
+
+
+      <div class="box-card">
+
+        <h3>
+          Mix 9
+        </h3>
+
+        <div class="contents">
+          05 Futomaki · 04 California
+        </div>
+
+        <div class="box-price">
+          1 600 DA
+        </div>
+
+      </div>
+
+
+      <div class="box-card">
+
+        <h3>
+          Mix 10
+        </h3>
+
+        <div class="contents">
+          06 Hosomaki · 04 California
+        </div>
+
+        <div class="box-price">
+          1 600 DA
+        </div>
+
+      </div>
+
+
+      <div class="box-card">
+
+        <h3>
+          Mix 12
+        </h3>
+
+        <div class="contents">
+          04 Nigiri · 04 Crunchy · 04 California
+        </div>
+
+        <div class="box-price">
+          2 300 DA
+        </div>
+
+      </div>
+
+
+      <div class="box-card">
+
+        <h3>
+          Mix 18
+        </h3>
+
+        <div class="contents">
+          04 Crunchy · 04 California · 06 Hosomaki · 04 Nigiri
+        </div>
+
+        <div class="box-price">
+          3 000 DA
+        </div>
+
+      </div>
+
+
+      <div class="box-card">
+
+        <h3>
+
+          Mix 23
+
+          <span class="badge">
+            Populaire
+          </span>
+
+        </h3>
+
+        <div class="contents">
+          08 Nigiri · 08 California · 04 Crunchy · 06 Hosomaki · 05 Futomaki
+        </div>
+
+        <div class="box-price">
+          4 000 DA
+        </div>
+
+      </div>
+
+
+      <div class="box-card">
+
+        <h3>
+          Mix 35
+        </h3>
+
+        <div class="contents">
+          08 Nigiri · 08 Crunchy · 08 Hosomaki · 04 California · 05 Futomaki · Tatsumi Roll
+        </div>
+
+        <div class="box-price">
+          5 500 DA
+        </div>
+
+      </div>
+
+
+      <div class="box-card">
+
+        <h3>
+          Mix 54
+        </h3>
+
+        <div class="contents">
+          08 Nigiri · 08 California · 12 Hosomaki · 10 Futomaki · 08 Salmon Cheese · 08 Crunchy
+        </div>
+
+        <div class="box-price">
+          9 000 DA
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         MIX PRESTIGE
+    ========================== -->
+
+    <h2 class="section-title">
+      Mix Prestige
+    </h2>
+
+
+    <div class="box-grid">
+
+
+      <div class="box-card">
+
+        <h3>
+          Mix 16
+        </h3>
+
+        <div class="contents">
+          04 Dragon Roll · 04 Rainbow · 04 Spring · 04 Nigiri
+        </div>
+
+        <div class="box-price">
+          3 500 DA
+        </div>
+
+      </div>
+
+
+      <div class="box-card">
+
+        <h3>
+          Mix 23
+        </h3>
+
+        <div class="contents">
+          04 Mango · 04 Crunchy · 04 Salmon Cheese · 08 Dragon Roll · 03 Nigiri
+        </div>
+
+        <div class="box-price">
+          5 000 DA
+        </div>
+
+      </div>
+
+
+      <div class="box-card">
+
+        <h3>
+          Mix 40
+        </h3>
+
+        <div class="contents">
+          08 Mango · 08 Dragon Roll · 08 Spring Roll · 08 Nigiri
+        </div>
+
+        <div class="box-price">
+          7 500 DA
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         NOTES
+    ========================== -->
+
+    <h2
+      id="notes"
+      class="section-title"
+    >
+      Note
+    </h2>
+
+
+    <div class="note-box">
+
+      <p>
+        • La sauce soja, le gingembre et le wasabi sont inclus dans le prix.
+      </p>
+
+      <p>
+        • Certains mélanges peuvent manquer ou être modifiés selon la disponibilité.
+      </p>
+
+      <p>
+        • Nous ajoutons au besoin certains ingrédients, cela n'influe pas dans le prix.
+      </p>
+
+      <p>
+        • Notre établissement travaille dans le respect des normes internationales d'hygiène et de sécurité alimentaire en procédant à la congélation des poissons frais dès leur réception (CE) N853/2004.
+      </p>
+
+      <p>
+        • Veuillez nous aviser en cas d'allergies ou d'intolérances à certains aliments et cela avant toute commande.
+      </p>
+
+      <p>
+        • Il n'est pas possible de modifier ou de personnaliser le contenu du menu.
+      </p>
+
+      <p>
+        • Pour toutes réclamations ou remarques concernant une commande ou une livraison, merci de la signaler sur le moment, auprès du service concerné.
+      </p>
+
+      <p>
+        <strong>
+          SUSHI TATSUMI
+        </strong>
+      </p>
+
+      <p
+        style="
+          text-align:center;
+          color:var(--gold);
+          font-family:'Cinzel',serif;
+          font-size:1.05rem;
+        "
+      >
+        BONNE APPÉTIT
+      </p>
+
+    </div>
+
+  </main>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
   <footer>
-    <!-- LINK UPDATED TO YOUR INSTAGRAM -->
-    <a href="https://www.instagram.com/sushi_tatsumi_?stkn=MWNldndlaHVnY3NrbQ==" target="_blank" class="social-btn">
-      <span>Follow us on Instagram @sushi_tatsumi_</span>
+
+    <a
+      href="https://www.instagram.com/sushi_tatsumi_?stkn=MWNldndlaHVnY3NrbQ=="
+      target="_blank"
+      rel="noopener"
+      class="social-btn"
+    >
+      Instagram · @sushi_tatsumi_
     </a>
-    <p class="info-text">📍 Visit us for live dining & takeaways</p>
-    <p class="info-text">© Sushi Tatsumi. All rights reserved.</p>
+
+    <p class="info-text">
+      📍 Visitez-nous pour vos repas sur place & à emporter
+    </p>
+
+    <p class="info-text">
+      © Sushi Tatsumi. Tous droits réservés.
+    </p>
+
   </footer>
+
 
 </body>
 </html>
